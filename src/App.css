@@ -1,0 +1,12 @@
+.card{
+    box-shadow: 2px 2px 5px black;
+    width: 200px;
+    text-align: center;
+    border-radius: 20px;
+   
+}
+.cards{
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+}
