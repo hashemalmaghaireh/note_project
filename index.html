@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React Todo App</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق ملاحظات Notavia</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><span style="color: #6c5ce7;">Notavia</span> للملاحظات</h1>
+        </header>
+
+        <div class="note-input-section">
+            <input type="text" id="note-title" placeholder="عنوان الملاحظة...">
+            <textarea id="note-body" placeholder="اكتب ملاحظتك هنا..."></textarea>
+            <button id="add-btn">إضافة الملاحظة</button>
+        </div>
+
+        <hr>
+
+        <div id="notes-container" class="notes-grid">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
