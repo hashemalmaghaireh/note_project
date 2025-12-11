@@ -1,179 +1,149 @@
-/* إعدادات عامة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-}
-
+/* إعدادات الصفحة والخطوط */
 body {
-    background-color: #f4f7f6;
-    color: #333;
-    padding: 20px;
+  background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* نبدأ من الأعلى */
+  padding-top: 40px; /* مسافة من الأعلى */
+  margin: 0;
+  color: #333;
 }
 
-/* --- تعديل ريسبونسيف: الحاوية الرئيسية --- */
-/* بدلاً من عرض ثابت، نستخدم نسبة مئوية وحد أقصى */
-.container {
-    width: 95%; /* تأخذ 95% من عرض الشاشة على الموبايل */
-    max-width: 1000px; /* لكن لا تتجاوز 1000 بيكسل على الشاشات الكبيرة */
-    margin: 0 auto; /* توسيط الحاوية */
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+/* الكارد أو البطاقة البيضاء (متجاوبة) */
+.app-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+  
+  /* أهم جزء للريسبونسيف */
+  width: 90%;          /* عرض 90% للشاشات الصغيرة */
+  max-width: 500px;    /* حد أقصى للشاشات الكبيرة */
+  box-sizing: border-box; /* لضمان حساب الهوامش بشكل صحيح */
 }
 
-header {
-    text-align: center;
-    margin-bottom: 30px;
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: #2d3436;
+/* مجموعة الإدخال */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
-/* قسم الإدخال */
-.note-input-section {
-    display: flex;
-    flex-direction: column; /* العناصر تحت بعضها بشكل افتراضي */
-    gap: 15px;
-    margin-bottom: 30px;
+.input-group input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  min-width: 0; /* مهم جداً للموبايل لمنع التمدد الزائد */
 }
 
-.note-input-section input,
-.note-input-section textarea {
+.input-group input:focus {
+  border-color: #6a11cb;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap; /* يمنع نزول النص لسطر جديد داخل الزر */
+}
+
+/* قائمة المهام */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  gap: 10px;
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  overflow: hidden; /* لمنع النص الطويل من تخريب التصميم */
+}
+
+.todo-content span {
+  word-break: break-word; /* كسر الكلمات الطويلة جداً */
+  font-size: 16px;
+}
+
+.todo-content input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0; /* يمنع الانكماش */
+  accent-color: #6a11cb;
+  cursor: pointer;
+}
+
+.completed {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+/* أزرار الإجراءات */
+.actions {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0; /* يمنع الأزرار من الاختفاء عند ضيق المساحة */
+}
+
+.btn-icon {
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+}
+
+.btn-edit { background-color: #fbc02d; }
+.btn-delete { background-color: #ff5252; }
+
+/* تحسينات للشاشات الصغيرة جداً */
+@media (max-width: 400px) {
+  .app-container {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  
+  h1 { font-size: 1.5rem; }
+  
+  .input-group { flex-direction: column; }
+  
+  .btn-primary { 
+    padding: 12px; 
     width: 100%;
-    padding: 15px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    transition: border-color 0.3s;
+  }
 }
-
-.note-input-section input:focus,
-.note-input-section textarea:focus {
-    border-color: #6c5ce7;
-    outline: none;
-}
-
-.note-input-section textarea {
-    resize: vertical;
-    height: 100px;
-}
-
-.note-input-section button {
-    padding: 15px;
-    background-color: #6c5ce7;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.note-input-section button:hover {
-    background-color: #5649c0;
-    transform: translateY(-2px);
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background: #eee;
-    margin-bottom: 30px;
-}
-
-/* --- تعديل ريسبونسيف: شبكة الملاحظات (الأهم) --- */
-.notes-grid {
-    display: grid;
-    /* هذه الخاصية السحرية تجعل الأعمدة تتكيف تلقائياً */
-    /* تعني: املأ الصف بأكبر عدد ممكن من الأعمدة، بشرط ألا يقل عرض العمود الواحد عن 280 بيكسل */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-/* تصميم كارت الملاحظة */
-.note-card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-top: 5px solid #a29bfe;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.note-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.note-card h3 {
-    margin-bottom: 15px;
-    color: #2d3436;
-    font-size: 1.4rem;
-    word-wrap: break-word; /* لكسر الكلمات الطويلة جداً */
-}
-
-.note-card p {
-    color: #636e72;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    white-space: pre-wrap; /* للحفاظ على الأسطر الجديدة التي يكتبها المستخدم */
-    word-wrap: break-word;
-}
-
-.delete-btn {
-    align-self: flex-end; /* جعل الزر في الزاوية اليسرى السفلية */
-    background-color: #ff7675;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-}
-
-.delete-btn:hover {
-    background-color: #d63031;
-}
-
-/* --- استعلامات الوسائط (Media Queries) للشاشات الكبيرة --- */
-/* إذا كانت الشاشة أعرض من 768px (تابلت أو لابتوب) */
-@media (min-width: 768px) {
-    body {
-        padding: 40px;
-    }
-    
-    header h1 {
-        font-size: 3rem;
-    }
-    
-    /* نجعل حقول الإدخال والزر بجانب بعضها على الشاشات الكبيرة */
-    .note-input-section {
-        flex-direction: row; 
-        align-items: flex-start;
-    }
-    
-    .note-input-section input,
-    .note-input-section textarea {
-        flex: 1; /* يأخذون مساحة متساوية */
-    }
-    
-    .note-input-section textarea {
-        height: 58px; /* ارتفاع مناسب ليكون مساوياً لحقل العنوان تقريباً */
-    }
-
-    .note-input-section button {
-        flex-basis: 200px; /* عرض ثابت للزر */
-        height: 58px;
-    }
-}
-
