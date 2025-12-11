@@ -1,14 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { MdDelete } from "react-icons/md"; // تأكد أنك مثبت المكتبة: npm install react-icons
+import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-// ------------------------------------------
-import "./App.css"; // هام جداً: هذا السطر هو الذي يربط التصميم بالكود
-// ------------------------------------------
+import "./App.css"; // ربط ملف الـ CSS
 
 function App() {
   const [item, setItem] = useState("");
   
-  // استرجاع البيانات من Local Storage
+  // استرجاع البيانات
   const [todoList, setTodoList] = useState(() => {
     const localValue = localStorage.getItem("ITEMS");
     if (localValue == null) return [];
@@ -16,9 +14,9 @@ function App() {
   });
 
   const [editId, setEditId] = useState(null);
-  const inputRef = useRef(null); // استخدام Ref للتحكم بالتركيز (Focus)
+  const inputRef = useRef(null);
 
-  // حفظ البيانات عند أي تغيير
+  // حفظ البيانات
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todoList));
   }, [todoList]);
@@ -63,7 +61,6 @@ function App() {
     inputRef.current.focus();
   };
 
-  // دعم زر Enter
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       editId ? updateItem() : addItem();
@@ -71,9 +68,8 @@ function App() {
   };
 
   return (
-    // استخدام الكلاسات الموجودة في ملف CSS
     <div className="app-container">
-      <h1>My Tasks 🚀</h1>
+      <h1>Notavia Tasks 📝</h1>
       
       <div className="input-group">
         <input
@@ -82,7 +78,7 @@ function App() {
           ref={inputRef}
           onChange={(e) => setItem(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="What do you need to do?"
+          placeholder="What needs to be done?"
         />
         {editId ? (
           <button className="btn-primary" onClick={updateItem}>Update</button>
@@ -93,8 +89,8 @@ function App() {
 
       <div className="todo-list">
         {todoList.length === 0 && (
-          <p style={{ textAlign: "center", color: "#888", marginTop: "20px" }}>
-            No tasks yet. Enjoy your day! ☀️
+          <p style={{ textAlign: "center", color: "#888", marginTop: "10px" }}>
+            No tasks yet. Add one above!
           </p>
         )}
 
